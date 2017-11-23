@@ -1,1 +1,23 @@
 {% extends "index.html" %}
+{% import "macros.html" as macros %}
+
+{% block description %}
+{{ page.description }}
+{% endblock description %}
+
+{% block title %}
+{{ page.title }} — {{ super() }}
+{% endblock title %}
+
+{% block content %}
+<section class="article-container">
+    <h1 class="article-title">
+        {{ page.title }}
+    </h1>
+    {{ macros::post_meta(page=page) }}
+
+    <article class="article-content">
+        {{ page.content | safe }}
+    </article>
+</section>
+{% endblock content %}

@@ -1,9 +1,14 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-        <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+        <title>
+            {% block title %}
+            {{ config.title }}
+            {% endblock title %}
+        </title>
 
         {% if config.generate_rss %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") }}" />
@@ -15,5 +20,20 @@
     </head>
 
     <body>
+        <div class="content">
+            {% block content %}
+            {% set posts = get_section(path="blog/_index.md") %}
+            {% for page in posts.pages %}
+            <article class="post">
+                <h3 class="post-title">
+                    <a href="{{ page.permalink }}">
+                        {{ page.title }}
+                    </a>
+                </h3>
+                {{ macros::post_meta(page=page) }}
+            </article>
+            {% endfor %}
+            {% endblock content %}
+        </div>
     </body>
 </html>
