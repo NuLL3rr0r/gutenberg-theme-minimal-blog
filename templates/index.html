@@ -19,6 +19,21 @@
     </head>
 
     <body>
+        {% if config.extra.minimal_blog_avatar or config.extra.minimal_blog_avatar_thumbnail %}
+        <div class="avatar">
+            {% if config.extra.minimal_blog_avatar %}
+            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}">
+            {% else %}
+            <a href="{{ config.base_url }}">
+            {% endif %}
+            {% if config.extra.minimal_blog_avatar_thumbnail %}
+            <img src="{{ get_url(path=config.extra.minimal_blog_avatar_thumbnail) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+            {% else %}
+            <img src="{{ get_url(path=config.extra.minimal_blog_avatar) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+            {% endif %}
+            </a>
+        </div>
+        {% endif %}
         <div class="content">
             {% block content %}
             {% set posts = get_section(path="blog/_index.md") %}
