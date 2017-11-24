@@ -1,4 +1,3 @@
-{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +29,15 @@
                         {{ page.title }}
                     </a>
                 </h3>
-                {{ macros::post_meta(page=page) }}
+                <span class="post-meta">
+                    {% if page.date %}
+                    {{ page.date | date(format="%Y-%m-%d") }}
+                    {% endif %}
+                    {% if page.extra.updated %}
+                    (last updated: {{ page.extra.updated | date(format="%Y-%m-%d") }})
+                    {% endif %}
+                    — Reading time: {{ page.reading_time }} min
+                </span>
             </article>
             {% endfor %}
             {% endblock content %}
