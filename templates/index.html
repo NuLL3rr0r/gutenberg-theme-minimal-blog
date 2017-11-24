@@ -14,8 +14,9 @@
         {% endif %}
 
         {% block css %}
-        <link rel="stylesheet" href="{{ get_url(path="styles.css") }}" />
         {% endblock css %}
+        <link rel="stylesheet" href="{{ get_url(path="css/font-awesome.min.css") }}" />
+        <link rel="stylesheet" href="{{ get_url(path="styles.css") }}" />
     </head>
 
     <body>
@@ -46,12 +47,10 @@
                 </h3>
                 <span class="post-meta">
                     {% if page.date %}
-                    {{ page.date | date(format="%Y-%m-%d") }}
+                    <i class="fa fa-calendar-o"></i> {{ page.date | date(format="%Y-%m-%d") }}
                     {% endif %}
-                    {% if page.extra.updated %}
-                    (last updated: {{ page.extra.updated | date(format="%Y-%m-%d") }})
-                    {% endif %}
-                    — Reading time: {{ page.reading_time }} min
+                    |
+                    <i class="fa fa-clock-o"></i> {{ page.reading_time }} minute(s) read
                 </span>
             </article>
             {% endfor %}
