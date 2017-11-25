@@ -1,9 +1,0 @@
-{% macro post_meta(page) %}
-<span class="post-meta">
-    {% if page.date %}
-    <i class="fa fa-calendar"></i> {{ page.date | date(format="%Y-%m-%d") }}
-    {% endif %}
-    |
-    <i class="fa fa-clock"></i> {{ page.reading_time }} minute(s) read
-</span>
-{% endmacro post_meta %}

@@ -5,6 +5,7 @@ homepage = "https://github.com/NuLL3rr0r/gutenberg-theme-minimal-blog"
 min_version = "0.2"
 
 [extra]
+minimal_blog_excerpt_link = "Read more..."
 minimal_blog_rtl = false
 
 [author]
