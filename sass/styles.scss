@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+@import "vendor/normalize-scss/normalize";
+@include normalize();
+
 @import "vendor/font-awesome/font-awesome";
 
 @import "variables";
