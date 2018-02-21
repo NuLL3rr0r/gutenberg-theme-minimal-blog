@@ -39,8 +39,7 @@
 
         <div class="content">
             {% block content %}
-            {% set posts_section = get_section(path="blog/_index.md") %}
-            {% for page in posts_section.pages %}
+            {% for page in paginator.pages %}
             <article class="post">
                 <header>
                     <h3 class="post-title">
@@ -69,13 +68,12 @@
 
             <nav>
               <p>
-                {% set post_paginator = post_section.paginator %}
-                {% if post_paginator.previous %}
-                  <a href="{{ post_paginator.previous }}">&laquo; Previous</a> |
+                {% if paginator.previous %}
+                  <a href="{{ paginator.previous }}">&laquo; Previous</a> |
                 {% endif %}
-                <span>Page {{ post_paginator.current_index }} of {{ post_paginator.pagers | length }}</span>
-                {% if post_paginator.next %}
-                  | <a href="{{ post_paginator.next }}">Next &raquo;</a>
+                <span>Page {{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
+                {% if paginator.next %}
+                  | <a href="{{ paginator.next }}">Next &raquo;</a>
                 {% endif %}
               </p>
             </nav>
