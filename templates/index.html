@@ -69,11 +69,17 @@
             <nav>
               <p>
                 {% if paginator.previous %}
-                  <a href="{{ paginator.previous }}">&laquo; Previous</a> |
+                    {% if paginator.current_index > 2 %}
+                        <a href="{{ paginator.first }}"><i class="fa fa-angle-double-left"></i></a>
+                    {% endif %}
+                    <a href="{{ paginator.previous }}"><i class="fa fa-angle-left"></i></a>
                 {% endif %}
-                <span>Page {{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
+                <span>{{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
                 {% if paginator.next %}
-                  | <a href="{{ paginator.next }}">Next &raquo;</a>
+                    <a href="{{ paginator.next }}"><i class="fa fa-angle-right"></i></a>
+                    {% if paginator.current_index < paginator.pagers | length - 1 %}
+                        <a href="{{ paginator.last }}"><i class="fa fa-angle-double-right"></i></a>
+                    {% endif %}
                 {% endif %}
               </p>
             </nav>
