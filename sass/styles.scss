@@ -3,6 +3,31 @@
 @import "vendor/normalize-scss/normalize";
 @include normalize();
 
+@import "font-face";
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-100', 100, normal, 'Montserrat Thin' 'Montserrat-Thin', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-100italic', 100, italic, 'Montserrat Thin Italic' 'Montserrat-ThinItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-200', 200, normal, 'Montserrat ExtraLight' 'Montserrat-ExtraLight', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-200italic', 200, italic, 'Montserrat ExtraLight Italic' 'Montserrat-ExtraLightItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-300', 300, normal, 'Montserrat Light' 'Montserrat-Light', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-300italic', 300, italic, 'Montserrat Light Italic' 'Montserrat-LightItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-regular', 400, normal, 'Montserrat Regular' 'Montserrat-Regular', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-italic', 400, italic, 'Montserrat Italic' 'Montserrat-Italic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-500', 500, normal, 'Montserrat Medium' 'Montserrat-Medium', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-500italic', 500, italic, 'Montserrat Medium Italic' 'Montserrat-MediumItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-600', 600, normal, 'Montserrat SemiBold' 'Montserrat-SemiBold', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-600italic', 600, italic, 'Montserrat SemiBold Italic' 'Montserrat-SemiBoldItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-700', 700, normal, 'Montserrat Bold' 'Montserrat-Bold', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-700italic', 700, italic, 'Montserrat Bold Italic' 'Montserrat-BoldItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-800', 800, normal, 'Montserrat ExtraBold' 'Montserrat-ExtraBold', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-800italic', 800, italic, 'Montserrat ExtraBold Italic' 'Montserrat-ExtraBoldItalic', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-900', 900, normal, 'Montserrat Black' 'Montserrat-Black', woff2 woff);
+@include font-face('Montserrat', 'fonts/montserrat-v12-latin-900italic', 900, italic, 'Montserrat Black Italic' 'Montserrat-BlackItalic', woff2 woff);
+@include font-face('Vazir', 'fonts/vazir-thin', 100, null, 'Vazir Thin' 'Vazir-Thin', woff2 woff);
+@include font-face('Vazir', 'fonts/vazir-light', 300, null, 'Vazir Light' 'Vazir-Light', woff2 woff);
+@include font-face('Vazir', 'fonts/vazir', 400, null, 'Vazir' 'Vazir', woff2 woff);
+@include font-face('Vazir', 'fonts/vazir-medium', 500, null, 'Vazir Medium' 'Vazir-Medium', woff2 woff);
+@include font-face('Vazir', 'fonts/vazir-bold', 700, null, 'Vazir Bold' 'Vazir-Bold', woff2 woff);
+
 @import "vendor/font-awesome/font-awesome";
 
 @import "variables";
