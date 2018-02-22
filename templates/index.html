@@ -1,4 +1,5 @@
 {% import "post_macros.html" as post_macros %}
+{% import "footer_macros.html" as footer_macros %}
 
 <!DOCTYPE html>
 <html>
@@ -21,69 +22,95 @@
     </head>
 
     <body>
-        {% if config.extra.minimal_blog_avatar or config.extra.minimal_blog_avatar_thumbnail %}
-        <div class="avatar">
-            {% if config.extra.minimal_blog_avatar %}
-            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}">
-            {% else %}
-            <a href="{{ config.base_url }}">
-            {% endif %}
-            {% if config.extra.minimal_blog_avatar_thumbnail %}
-            <img src="{{ get_url(path=config.extra.minimal_blog_avatar_thumbnail) }}" alt="{{ config.title }}" title="{{ config.title }}" />
-            {% else %}
-            <img src="{{ get_url(path=config.extra.minimal_blog_avatar) }}" alt="{{ config.title }}" title="{{ config.title }}" />
-            {% endif %}
-            </a>
-        </div>
-        {% endif %}
-
-        <div class="content">
-            {% block content %}
-            {% for page in paginator.pages %}
-            <article class="post">
-                <header>
-                    <h3 class="post-title">
-                        <a href="{{ page.permalink }}">
-                            {{ page.title }}
-                        </a>
-                    </h3>
-                    <span class="post-meta">
-                        {% if page.date %}
-                        <i class="fa fa-calendar-o"></i> {{ page.date | date(format="%Y-%m-%d") }}
+        <div class="page">
+            <div class="header">
+                {% if config.extra.minimal_blog_avatar or config.extra.minimal_blog_avatar_thumbnail %}
+                <div class="avatar">
+                    <div class="b-polygons">
+                        {% if config.extra.minimal_blog_avatar %}
+                        <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_dodecagon">
+                        {% else %}
+                        <a href="{{ config.base_url }}" class="b-polygon b-polygon_dodecagon">
                         {% endif %}
-                        |
-                        <i class="fa fa-clock-o"></i> {{ page.reading_time }} minute(s) read
-                    </span>
-                </header>
-                {% if page.summary %}
-                <div class="post-excerpt">
-                    {{ page.summary | safe }}
-                    <nav class="post-excerpt-link">
-                        <a href="{{ page.permalink }}">{{ config.extra.minimal_blog_excerpt_link }}</a>
-                    </nav>
+                            <span class="b-polygon-part">
+                                <span class="b-polygon-part b-polygon-part_content">
+                                    {% if config.extra.minimal_blog_avatar_thumbnail %}
+                                    <img src="{{ get_url(path=config.extra.minimal_blog_avatar_thumbnail) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+                                    {% else %}
+                                    <img src="{{ get_url(path=config.extra.minimal_blog_avatar) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+                                    {% endif %}
+                                </span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
                 {% endif %}
-            </article>
-            {% endfor %}
+            </div>
 
-            <nav>
-              <p>
-                {% if paginator.previous %}
-                    {% if paginator.current_index > 2 %}
-                        <a href="{{ paginator.first }}"><i class="fa fa-angle-double-left"></i></a>
+            <div class="content">
+                {% block content %}
+                {% for page in paginator.pages %}
+                <article class="post">
+                    <header>
+                        <h3 class="post-title">
+                            <a href="{{ page.permalink }}">
+                                {{ page.title }}
+                            </a>
+                        </h3>
+                        <span class="post-meta">
+                            {% if page.date %}
+                            <i class="fa fa-calendar-o"></i> {{ page.date | date(format="%Y-%m-%d") }}
+                            {% endif %}
+                            |
+                            <i class="fa fa-clock-o"></i> {{ page.reading_time }} minute(s) read
+                        </span>
+                    </header>
+                    {% if page.summary %}
+                    <div class="post-excerpt">
+                        {{ page.summary | safe }}
+                        <nav class="post-excerpt-link">
+                            <a href="{{ page.permalink }}">{{ config.extra.minimal_blog_excerpt_link }}</a>
+                        </nav>
+                    </div>
                     {% endif %}
-                    <a href="{{ paginator.previous }}"><i class="fa fa-angle-left"></i></a>
-                {% endif %}
-                <span>{{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
-                {% if paginator.next %}
-                    <a href="{{ paginator.next }}"><i class="fa fa-angle-right"></i></a>
-                    {% if paginator.current_index < paginator.pagers | length - 1 %}
-                        <a href="{{ paginator.last }}"><i class="fa fa-angle-double-right"></i></a>
+                </article>
+                {% endfor %}
+
+                <nav>
+                  <p>
+                    {% if paginator.previous %}
+                        {% if paginator.current_index > 2 %}
+                            <a href="{{ paginator.first }}"><i class="fa fa-angle-double-left"></i></a>
+                        {% endif %}
+                        <a href="{{ paginator.previous }}"><i class="fa fa-angle-left"></i></a>
                     {% endif %}
-                {% endif %}
-              </p>
-            </nav>
-            {% endblock content %}
+                    <span>{{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
+                    {% if paginator.next %}
+                        <a href="{{ paginator.next }}"><i class="fa fa-angle-right"></i></a>
+                        {% if paginator.current_index < paginator.pagers | length - 1 %}
+                            <a href="{{ paginator.last }}"><i class="fa fa-angle-double-right"></i></a>
+                        {% endif %}
+                    {% endif %}
+                  </p>
+                </nav>
+                {% endblock content %}
+            </div>
+
+            <div class="footer">
+                <div class="legal">
+                    {{ footer_macros::get_copyright() }}
+                    {{ footer_macros::get_license() }}
+                </div>
+
+                <div class="credits">
+                    <div class="powered-by">
+                        {{ footer_macros::get_powered_by() }}
+                    </div>
+                    <div class="theme-by">
+                        Theme by: <a href="https://github.com/NuLL3rr0r/gutenberg-theme-minimal-blog" alt="A minimal blog theme for Gutenberg" title="A minimal blog theme for Gutenberg">Minimal Blog</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
