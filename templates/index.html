@@ -98,14 +98,30 @@
 
             <div class="footer">
                 <div class="legal">
-                    {{ footer_macros::get_copyright() }}
-                    {{ footer_macros::get_license() }}
+                    <div class="copyright">
+                        {% if config.extra.minimal_blog_copyright_text %}
+                        {{ config.extra.minimal_blog_copyright_text | safe }}
+                        {% endif %}
+                    </div>
+
+                    <div class="license">
+                        {% if config.extra.minimal_blog_license_text %}
+                        {{ config.extra.minimal_blog_license_text | safe }}
+                        {% endif %}
+                    </div>
                 </div>
 
                 <div class="credits">
                     <div class="powered-by">
-                        {{ footer_macros::get_powered_by() }}
+                        Powered by:
+                        {% if config.extra.minimal_blog_powered_by %}
+                        {% for item in config.extra.minimal_blog_powered_by %}
+                        <a href="{{ item.url }}" alt="{{ item.title }}" Title="{{ item.title }}" target="_blank">{{ item.title }}</a> |
+                        {% endfor %}
+                        {% endif %}
+                        <a href="http://getgutenberg.io/" alt="Gutenberg" Title="Gutenberg" target="_blank">Gutenberg</a>
                     </div>
+
                     <div class="theme-by">
                         Theme by: <a href="https://github.com/NuLL3rr0r/gutenberg-theme-minimal-blog" alt="A minimal blog theme for Gutenberg" title="A minimal blog theme for Gutenberg">Minimal Blog</a>
                     </div>
