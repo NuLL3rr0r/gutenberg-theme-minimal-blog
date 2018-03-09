@@ -3,9 +3,49 @@ html, body {
     color: $primary-text-color;
 }
 
+.b-polygon_square {
+    width: 96px;
+    height: 96px;
+}
+.b-polygon_octagon {
+    width: 96px;
+    height: 96px;
+}
+.b-polygon_octagon2 {
+    margin: 4px;
+}
+.b-polygon_octagon2 .b-polygon-part_content {
+    width: 104px;
+    height: 104px;
+    margin: -4px;
+}
+.b-polygon_hexagon {
+    width: 192px;
+    height: 96px;
+    margin: 0 -40px;
+}
+.b-polygon_hexagon .b-polygon-part_content {
+    width: 112px;
+    height: 96px;
+    margin: 0 40px;
+}
+.b-polygon_hexagon2 {
+    width: 96px;
+    height: 192px;
+    margin: -40px 0;
+}
+.b-polygon_hexagon2 .b-polygon-part_content {
+    width: 96px;
+    height: 112px;
+    margin: 40px 0;
+}
 .b-polygon_dodecagon {
     width: 96px;
     height: 96px;
+    margin: 0;
+}
+.b-circle {
+    border-radius: 50%;
 }
 
 .page {

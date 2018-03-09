@@ -7,12 +7,12 @@
 
         <title>
             {% block title %}
-            {{ config.title }}
+                {{ config.title }}
             {% endblock title %}
         </title>
 
         {% if config.generate_rss %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") }}" />
+            <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path="rss.xml") }}" />
         {% endif %}
 
         {% block css %}
@@ -23,75 +23,113 @@
     <body>
         <div class="page">
             <div class="header">
-                {% if config.extra.minimal_blog_avatar or config.extra.minimal_blog_avatar_thumbnail %}
-                <div class="avatar">
-                    <div class="b-polygons">
-                        {% if config.extra.minimal_blog_avatar %}
-                        <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_dodecagon">
-                        {% else %}
-                        <a href="{{ config.base_url }}" class="b-polygon b-polygon_dodecagon">
-                        {% endif %}
-                            <span class="b-polygon-part">
-                                <span class="b-polygon-part b-polygon-part_content">
-                                    {% if config.extra.minimal_blog_avatar_thumbnail %}
-                                    <img src="{{ get_url(path=config.extra.minimal_blog_avatar_thumbnail) }}" alt="{{ config.title }}" title="{{ config.title }}" />
-                                    {% else %}
-                                    <img src="{{ get_url(path=config.extra.minimal_blog_avatar) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+                <div class="profile">
+                    {% if config.extra.minimal_blog_avatar or config.extra.minimal_blog_avatar_thumbnail %}
+                        <div class="avatar">
+                            {% if config.extra.minimal_blog_avatar_shape != "circle" %}
+                                <div class="b-polygons">
+                            {% endif %}
+                                    {% if config.extra.minimal_blog_avatar %}
+                                        {% if config.extra.minimal_blog_avatar_shape == "circle" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "dodecagon" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_dodecagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "hexagon" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_hexagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "hexagon2" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_hexagon b-polygon_hexagon2">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "octagon" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_octagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "octagon2" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_octagon b-polygon_octagon2">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "square" %}
+                                            <a href="{{ get_url(path=config.extra.minimal_blog_avatar) }}" class="b-polygon b-polygon_square">
                                     {% endif %}
-                                </span>
-                            </span>
-                        </a>
-                    </div>
+                                    {% else %}
+                                        {% if config.extra.minimal_blog_avatar_shape == "circle" %}
+                                            <a href="{{ config.base_url }}">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "dodecagon" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_dodecagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "hexagon" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_hexagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "hexagon2" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_hexagon b-polygon_hexagon2">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "octagon" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_octagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "octagon2" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_octagon">
+                                        {% elif config.extra.minimal_blog_avatar_shape == "square" %}
+                                            <a href="{{ config.base_url }}" class="b-polygon b-polygon_square">
+                                        {% endif %}
+                                    {% endif %}
+                                            {% if config.extra.minimal_blog_avatar_shape != "circle" %}
+                                                <span class="b-polygon-part">
+                                                    <span class="b-polygon-part b-polygon-part_content">
+                                            {% endif %}
+                                                        {% if config.extra.minimal_blog_avatar_thumbnail %}
+                                                            <img {% if config.extra.minimal_blog_avatar_shape == "circle" %}class="b-circle"{% endif %} src="{{ get_url(path=config.extra.minimal_blog_avatar_thumbnail) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+                                                        {% else %}
+                                                            <img {% if config.extra.minimal_blog_avatar_shape == "circle" %}class="b-circle"{% endif %} src="{{ get_url(path=config.extra.minimal_blog_avatar) }}" alt="{{ config.title }}" title="{{ config.title }}" />
+                                                        {% endif %}
+                                            {% if config.extra.minimal_blog_avatar_shape != "circle" %}
+                                                    </span>
+                                                </span>
+                                            {% endif %}
+                                            </a>
+                            {% if config.extra.minimal_blog_avatar_shape != "circle" %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
 
             <div class="content">
                 {% block content %}
-                {% for page in paginator.pages %}
-                <article class="post">
-                    <header>
-                        <h3 class="post-title">
-                            <a href="{{ page.permalink }}">
-                                {{ page.title }}
-                            </a>
-                        </h3>
-                        <span class="post-meta">
-                            {% if page.date %}
-                            <i class="fa fa-calendar-o"></i> {{ page.date | date(format="%Y-%m-%d") }}
+                    {% for page in paginator.pages %}
+                        <article class="post">
+                            <header>
+                                <h3 class="post-title">
+                                    <a href="{{ page.permalink }}">
+                                        {{ page.title }}
+                                    </a>
+                                </h3>
+                                <span class="post-meta">
+                                    {% if page.date %}
+                                        <i class="fa fa-calendar-o"></i> {{ page.date | date(format="%Y-%m-%d") }}
+                                    {% endif %}
+                                    |
+                                    <i class="fa fa-clock-o"></i> {{ page.reading_time }} minute(s) read
+                                </span>
+                            </header>
+                            {% if page.summary %}
+                                <div class="post-excerpt">
+                                    {{ page.summary | safe }}
+                                    <nav class="post-excerpt-link">
+                                        <a href="{{ page.permalink }}">{{ config.extra.minimal_blog_excerpt_link }}</a>
+                                    </nav>
+                                </div>
                             {% endif %}
-                            |
-                            <i class="fa fa-clock-o"></i> {{ page.reading_time }} minute(s) read
-                        </span>
-                    </header>
-                    {% if page.summary %}
-                    <div class="post-excerpt">
-                        {{ page.summary | safe }}
-                        <nav class="post-excerpt-link">
-                            <a href="{{ page.permalink }}">{{ config.extra.minimal_blog_excerpt_link }}</a>
-                        </nav>
-                    </div>
-                    {% endif %}
-                </article>
-                {% endfor %}
+                        </article>
+                    {% endfor %}
 
-                <nav>
-                  <p>
-                    {% if paginator.previous %}
-                        {% if paginator.current_index > 2 %}
-                            <a href="{{ paginator.first }}"><i class="fa fa-angle-double-left"></i></a>
+                    <nav>
+                      <p>
+                        {% if paginator.previous %}
+                            {% if paginator.current_index > 2 %}
+                                <a href="{{ paginator.first }}"><i class="fa fa-angle-double-left"></i></a>
+                            {% endif %}
+                            <a href="{{ paginator.previous }}"><i class="fa fa-angle-left"></i></a>
                         {% endif %}
-                        <a href="{{ paginator.previous }}"><i class="fa fa-angle-left"></i></a>
-                    {% endif %}
-                    <span>{{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
-                    {% if paginator.next %}
-                        <a href="{{ paginator.next }}"><i class="fa fa-angle-right"></i></a>
-                        {% if paginator.current_index < paginator.pagers | length - 1 %}
-                            <a href="{{ paginator.last }}"><i class="fa fa-angle-double-right"></i></a>
+                        <span>{{ paginator.current_index }} of {{ paginator.pagers | length }}</span>
+                        {% if paginator.next %}
+                            <a href="{{ paginator.next }}"><i class="fa fa-angle-right"></i></a>
+                            {% if paginator.current_index < paginator.pagers | length - 1 %}
+                                <a href="{{ paginator.last }}"><i class="fa fa-angle-double-right"></i></a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                  </p>
-                </nav>
+                      </p>
+                    </nav>
                 {% endblock content %}
             </div>
 
@@ -99,13 +137,13 @@
                 <div class="legal">
                     <div class="copyright">
                         {% if config.extra.minimal_blog_copyright_text %}
-                        {{ config.extra.minimal_blog_copyright_text | safe }}
+                            {{ config.extra.minimal_blog_copyright_text | safe }}
                         {% endif %}
                     </div>
 
                     <div class="license">
                         {% if config.extra.minimal_blog_license_text %}
-                        {{ config.extra.minimal_blog_license_text | safe }}
+                            {{ config.extra.minimal_blog_license_text | safe }}
                         {% endif %}
                     </div>
                 </div>
@@ -114,9 +152,9 @@
                     <div class="powered-by">
                         Powered by:
                         {% if config.extra.minimal_blog_powered_by %}
-                        {% for item in config.extra.minimal_blog_powered_by %}
-                        <a href="{{ item.url }}" alt="{{ item.title }}" Title="{{ item.title }}" target="_blank">{{ item.title }}</a> |
-                        {% endfor %}
+                            {% for item in config.extra.minimal_blog_powered_by %}
+                                <a href="{{ item.url }}" alt="{{ item.title }}" Title="{{ item.title }}" target="_blank">{{ item.title }}</a> |
+                            {% endfor %}
                         {% endif %}
                         <a href="http://getgutenberg.io/" alt="Gutenberg" Title="Gutenberg" target="_blank">Gutenberg</a>
                     </div>
