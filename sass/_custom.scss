@@ -22,6 +22,16 @@
     width: auto;
     height: auto;
 
+    a {
+        display: block !important;
+        margin: 0 auto !important;
+
+        img {
+            display: block !important;
+            margin: 0 auto !important;
+        }
+    }
+
     .description {
         display: block;
         text-align: center;
